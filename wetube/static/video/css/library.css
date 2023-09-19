@@ -1,0 +1,112 @@
+.content{
+    position: relative;
+    left:7%;
+    top:100px;
+    width:90%;
+}
+.history_viewed>p{
+    position: relative;
+    left:-30px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+.like>p,
+.watch_later>p,
+.saved_playlist>p{
+    position: relative;
+    left:-30px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    margin-top: 4.2em;
+}
+.history-slider,
+.liked-slider,
+.watch-later-slider,
+.saved_playlist>div{
+    display: flex;
+    flex-direction: row;
+}
+.history_viewed>a,
+.like>a,
+.watch_later>a,
+.saved_playlist>a{
+    position: absolute;
+    top:5px;
+    right: 0px;
+    color: rgb(61, 61, 255);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+}
+.video-cart{
+    display: flex;
+    flex-direction: column;
+    max-width: 225px;
+    margin-left: 20px;
+}
+.video-cart>a{
+    text-decoration: none;
+    color:black;
+}
+#video-img{
+    max-width: 225px;
+    min-width: 225px;
+    max-height: 124px;
+    border-radius: 20px;
+}
+.video-info{
+    display: flex;
+    flex-direction: column;
+}
+.video-info>a>p,#title{
+    color:black;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    height: 54px;
+    hyphens: auto;
+    -webkit-line-clamp: 2; 
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+}
+.avtor-info>img,.descript-text>a>img{
+    width: 35px;
+    border-radius: 100%;
+    height: 35px;
+}
+.avtor-info{
+    display: flex;
+    align-items: center;
+}
+.avtor-info>p{
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+.video-info>p1,.video-info>a,.descript-text>a,.descript-text>p1{
+    color:rgb(150, 150, 150);
+    text-decoration: none;
+    font-family: 'Arimo', sans-serif;
+    font-size: 15px; 
+    overflow: hidden;
+}
+.history_viewed>div>div{
+    margin-left: 20px;
+}
+.video-history{
+    display: flex;
+    flex-direction: column;
+}
+.descript-text{
+    display: flex;
+    flex-direction: column;
+}
+.nothing-video{
+    display: flex;
+    align-items: center;
+}
+.nothing-video>p{
+    font-family: 'Nunito', sans-serif;
+    color: black;
+    font-size: 18px;
+    }

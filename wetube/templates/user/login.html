@@ -1,0 +1,29 @@
+{% extends 'sample_login.html' %}
+{% load static %}
+{% block title %}Логин{% endblock %}
+{% block content %}
+{% verbatim %}
+<div class="form-login">
+    <p>Логин</p>
+    <form >
+        <input type="text" name="username" required class="input-login" v-model="username" style="margin-top: 10px;" placeholder="Username">
+        <input type="text" name="pasword" required class="input-login" v-model="password" style="margin-top: 10px;" placeholder="Password">
+        <div class="options-login">
+            <div class="remember">
+                <input type="checkbox" style="margin-left: 0px;" ><p1>Запомнить меня</p1>
+            </div>
+            <div class="request-registr">
+                <p2>Нет аккаунта?</p2><a href="/register/">Зарегистрироваться</a>
+            </div>
+            
+
+        </div>
+        
+        <button type="button" style="margin-top: 10px;" @click="buttonPress">Войти</button>
+    </form>
+</div>
+{% endverbatim %}
+<script src="{% static 'user/js/login_user.js' %}"></script>
+<link rel="stylesheet" href="{% static 'user/css/login.css' %}">
+{% endblock %}
+

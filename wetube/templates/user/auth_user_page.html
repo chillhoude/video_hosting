@@ -1,0 +1,111 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'user/css/auth_user.css' %}">
+{% verbatim %}
+<div class="user-shield">
+    <div class="user">
+        <img :src="user.avatar" alt="">
+        <div class="user-info">
+            <p>{{ user.username }}</p>
+            <p1> {{user.count_subscriber}} </p1>
+        </div>
+        <a :href="`/settings/${user.username}/`" title="Настройки аккаунта">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+
+{% endverbatim %}
+<div class="tabs">
+
+    <input type="radio" name="tab-btn" id="tab-btn-1" checked>
+    <label for="tab-btn-1">Видео</label>
+    <input type="radio" name="tab-btn" id="tab-btn-2">
+    <label for="tab-btn-2">Плейлисты</label>
+    <input type="radio" name="tab-btn" id="tab-btn-3">
+    <label for="tab-btn-3">Сообщество</label>
+    {%verbatim%}
+    <div id="video">
+        <div v-if="videos.length > 0">
+            <div class="add-video">
+                <a href="/create/video/">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                        </svg>
+                    </div>
+                   
+                    <p>Добавить видео</p>
+                </a>
+            </div>
+            <div class="video-card" v-for="video in videos">
+                    <a :href="`/${video.id}/`" style="width: 100%;">
+                        <img :src="video.title_image" alt="">
+                        <a class="change-video" :href="`/change/${video.id}/`">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                        </a>
+                    <a :href="`/${video.id}/`">
+                            <div class="about">
+                                <p>{{ video.title }}</p>
+                                <p1>{{ video.views_counter }}</p1>  
+                                <p1> {{video.date_public}} </p1>
+                            </div>
+                    </a>
+            </div>
+        </div>
+        <div class="nothing-video" v-else>
+            <p>У вас пока нету видео</p>
+            <a href="/create/video/">Добавте свое первое видео</a>
+        </div>
+    </div>
+    {% endverbatim %}
+    {% verbatim %}
+    <div id="playlists">
+        <div v-if="playlists.length > 0 ">
+            <div class="playlist-card" v-for="playlist in playlists">
+                <a :href="`/playlist/${playlist.id}/`">
+                    <img v-if="playlist.title_image != null" :src="playlist.title_image" alt="">
+                    <div v-else class="image-null"></div>
+                    <p>{{ playlist.name }}</p>
+                </a>
+            </div>
+        </div>
+        <div v-else class="nothing-playlists">
+            <p>У вас пока нету плейлистов</p>
+        </div>
+    </div>
+    {% endverbatim %}
+    {% verbatim %}
+    <div id="community">
+        <div class="form-comment">
+            <textarea name="comment-text" v-model="massage" id="1" cols="100" rows="2"></textarea>
+            <button @click="sendMassage()">Опубликовать</button>
+        </div>
+        <div v-if="communityMassage.length != 0">
+            <div class="communityMassage" v-for="massage in communityMassage">
+                    <div class="avtor-comment">
+                        <a :href="`/user/${massage.avtor.id}/`">
+                            <img :src="massage.avtor.avatar" alt="">
+                            <p>{{ massage.avtor.username }}</p>
+                        </a>
+                    </div>
+                <p>{{ massage.text }}</p>
+            </div>
+        </div>
+        <div class="nothing-massage" v-else>
+            <p>У вас пока нету сообщений</p>
+        </div>
+    </div>
+    {% endverbatim %}
+
+
+</div>
+<script src="{% static 'user/js/auth_user.js' %}"></script>
+{% endblock %}

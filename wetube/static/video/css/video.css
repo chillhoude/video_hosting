@@ -1,0 +1,313 @@
+.content{
+    left:4%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top:80px;
+    width: calc(100% - 100px);
+}
+
+.video{
+    position: relative;
+    width: 1280px;
+}
+.player video{
+    object-fit: cover;
+    width: 1280px;
+    height: 720px;
+}
+.avtor-video{
+    width: auto;
+    position: relative;
+    float:left;
+    display:flex;
+}
+.avtor-video img{
+    border-radius: 100%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+.avtor-video p{
+    margin-left: 10px;
+    margin-top: 10px;
+    font-family: 'Arimo', sans-serif;
+    font-size: 16px;
+    color:black;
+}
+.raiting {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    float: right;
+    position: relative;
+
+}
+.video-info{
+    display: flex;
+    flex-direction: column;
+}
+.video-description h{
+    font-family: 'Arial';
+    font-size: 28px;
+}
+.description{
+    width: 100%;
+    background-color: #e2e2e2;
+    border-radius:15px; 
+    margin-top:10px;
+    overflow: hidden;
+    float:left;
+    position: relative;
+    transition: 0.3s;
+}
+.big-div::after{
+    position:absolute;
+    top:70px;
+    right: 0px;
+    content: 'еще...';
+    color: black;
+    background-color:#e2e2e2;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+}
+
+.description>p{
+    word-break: break-word;
+    hyphens: auto;
+    margin-left:10px;
+    white-space: pre-line;
+    font-size: 15px;
+    font-family: 'Noto Sans', sans-serif;
+}
+.comment{
+    position: relative;
+}
+.comment ul{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+.content-comment{
+    position: relative;
+    width: 1280px;
+    margin-top: 40px;
+    min-height: 100px;
+}
+.avtor-comment{
+    position: relative;
+}
+.avtor-comment>a>img{
+    width: 45px;
+    height: 45px;
+    border-radius:100% ;
+}
+.text-comment>a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Arimo', sans-serif;
+    font-size: 14px;
+    margin-left: 5px;
+    position: relative;
+    top:-5px
+}
+.text-comment>p{
+    text-decoration: none;
+    color: black;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 17px;
+    margin-left: 10px;
+    position: relative;
+    top:-5px
+}
+.input-comment{
+    margin-bottom: 20px;
+    display: flex;
+}
+.input-comment input{
+    border-top:none ;
+    border-left:none;
+    border-right: none;
+    outline: none;
+    border-bottom: 2px solid rgb(180, 180, 180);
+    transition: .5s;
+}
+.input-comment input:focus-visible{
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.input-comment button{
+    border:none;
+    background-color: white;
+    transition: .5s;
+    border-radius: 10px;
+}
+.input-comment svg{
+    left: -100px;
+}
+.input-comment button:hover{
+    background-color: rgb(201, 201, 201);
+}
+.btn-send :hover{
+    background-color: rgb(180, 180, 180);
+}
+.sc-video{
+    position: absolute;
+    top:0px;
+    left:calc(95% - (94% - 1280px));
+    width: calc(98% - 1280px);
+}
+
+.input-comment input{
+    width: 80%;
+}
+.same-content-video {
+    margin-top: 20px;
+}
+.views{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 20px;
+    position: relative;
+}
+.description-stat{
+    display: flex;
+    margin-left: 10px;
+}
+.description-stat>p1{
+    margin-top: 2px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.views>p{
+    margin-bottom: 0px;
+    margin-right: 5px;
+}
+.same-content-video a{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+.same-content-video img{
+    width: 40%;
+    max-height: 110px;
+    border-radius: 20px;
+}
+.sc-video-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.sc-video-info>p{
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+    color: black;
+    min-height: 54px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.sc-video-info p1,.sc-video-info a{
+    font-size: 12px;
+    font-family: 'Arial';
+    font-weight: 500;
+    color:rgb(160, 160, 160);
+}
+.raiting button{
+    border: none;
+    background-color: white;
+    position: relative;
+    top:-10px;
+}
+.like,.dislike{
+    display: flex;
+}
+.more{
+    position: relative;
+    top:-3px;
+}
+.more-menu{
+    background-color: #ffffff;
+    border:1px solid #aaaaaa;
+    position: absolute;
+    width: 200px;
+    height: 90px;
+    top:20px;
+    left:50px;
+    display: none;
+    transition: 0.3s;
+    z-index: 1;
+    border-radius: 10px;
+    
+}
+.raiting>input[type="checkbox"]{
+    display: none;
+}
+#more-menu-radio:checked~.more-menu{
+    display: flex;
+    flex-direction: column;
+}
+.share,.add-to-playlist,.add-watchlater{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.share>p,.add-to-playlist>p,.add-watchlater>p{
+    margin-bottom: 0px;
+    margin-left: 5px;
+    font-family: 'Nunito', sans-serif;
+}
+.share:hover,.add-to-playlist:hover,.add-watchlater:hover{
+    background-color: #aaaaaa;
+    border-radius: 10px;
+}
+
+.delete-update-comment,.delete-update-comment>button{
+    position: absolute;
+    top:-3px;
+    right: 15px;
+}
+.delete-update-comment>button{
+    border: none;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+.delete-update-comment>button:hover{
+    border: none;
+    background-color: #e2e2e2;
+}
+
+.div-comment-menu{
+    display: none;
+    position: relative;
+    top:25px;
+    flex-direction: column;
+    border: 1px solid #e2e2e2;
+}
+.div-comment-menu>button{
+    z-index: 1;
+    border: none;
+    background-color: white;
+    transition: 0.25s;
+}
+.div-comment-menu>button:hover{
+    z-index: 1;
+    background-color: #e2e2e2;
+}
+
+

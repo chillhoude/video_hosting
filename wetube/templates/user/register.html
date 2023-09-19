@@ -1,0 +1,28 @@
+{% extends 'sample_login.html' %}
+{% load static %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+{% verbatim %}
+<div class="form-registr">
+    
+    <form>
+        
+        
+        <p>Регистрация</p>
+        <input type="text" name="username" style="margin-top: 10px;" v-model="login" placeholder="Логин">
+        <input type="text" name="email" style="margin-top: 10px;" v-model="email" placeholder="Почта">
+        <input type="text" name="password" style="margin-top: 10px;" v-model="password" placeholder="Пароль">
+        <input type="text" name="confirm_password" style="margin-top: 10px;" placeholder="Повторите пароль">
+        <div class="error-window" >
+            <span v-for="error in errors">
+                <p v-for="err in error">{{ err }}</p>
+            </span>
+        </div>
+        <button type="button" style="margin-top: 20px;" @click="RegistrUser">Зарегистрироваться</button>
+    </form>
+</div>
+{% endverbatim %}
+
+<link rel="stylesheet" href="{% static 'user/css/registration.css' %}">
+<script src="{% static 'user/js/register_user.js' %}"></script>
+{% endblock %}

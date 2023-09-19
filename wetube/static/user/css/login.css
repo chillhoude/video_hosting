@@ -1,0 +1,20 @@
+.form-login p{
+    font-size: 20px;
+    font-family: 'JejuGothic';
+}
+.form-login form, .form-login{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+.options-login{
+    width: 100%;
+}
+.input-login{
+    border: solid 1px black;
+    width: 240px;
+    height: 20px;
+}
+.form-login button{
+    width: 150px;
+}

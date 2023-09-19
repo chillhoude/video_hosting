@@ -1,0 +1,173 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'user/css/user_page.css' %}">
+<link rel="stylesheet" href="{% static 'video/css/user_page.css' %}">
+
+{% verbatim %}
+
+<div class="user_main">
+    <img :src="user.avatar" alt="">
+    <div class="user-info">
+        <p>{{ user.username }}</p>
+        <p1> {{user.count_subscriber}} </p1>
+    </div>
+    <button>Подписаться</button>
+</div>
+{% endverbatim %}
+<div class="tabs">
+
+        <input type="radio" name="tab-btn" id="tab-btn-1" checked>
+        <label for="tab-btn-1">Главна</label>
+        <input type="radio" name="tab-btn" id="tab-btn-2">
+        <label for="tab-btn-2">Видео</label>
+        <input type="radio" name="tab-btn" id="tab-btn-3">
+        <label for="tab-btn-3">Плейлисты</label>
+        <input type="radio" name="tab-btn" id="tab-btn-4">
+        <label for="tab-btn-4">Сообщество</label>
+        <input type="radio" name="tab-btn" id="tab-btn-5">
+        <label for="tab-btn-5">О канале</label>
+        <br>
+
+    {%verbatim%}
+        <div id="content-mainpage">
+            <p>Все видео:</p>
+            <input type="radio" name="nav-btn-new" id="nav-btn-new-1"  checked>
+            <label for="nav-btn-new-1" id="left-new" v-if="new_video.length>6">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+            </label>
+                
+            <input type="radio" name="nav-btn-new" id="nav-btn-new-2">
+            <label for="nav-btn-new-2" id="right-new" v-if="new_video.length>6">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </label>
+            <div class="all-video" id="scroll_new">
+                <div v-if="popular_video.length != 0 ">
+                    <div class="video-card" v-for=' video in new_video.slice(0,12)'>
+                        <a :href="`/${video.id}/`">
+                            <img :src="video.title_image" alt="">
+                            <div class="about">
+                                <p>{{ video.title }}</p>
+                                <p1>{{ video.views_counter }}</p1>  
+                                <p1> {{video.date_public}} </p1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nothing-video-slider" v-else>
+                    <p>У пользователя пока нету видео</p>
+                </div>
+                
+            </div>
+            
+            
+            <p>Популрные видео:</p>
+            
+                <input type="radio" name="nav-btn-popular" id="nav-btn-popular-1"  checked>
+                <label for="nav-btn-popular-1" id="left-popular" v-if="popular_video.length>6">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                </label>
+                    
+                <input type="radio" name="nav-btn-popular" id="nav-btn-popular-2">
+                <label for="nav-btn-popular-2" id="right-popular" v-if="popular_video.length>6">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </label>
+                <div class="popular-video" id="scroll_popular">
+                    <div v-if="popular_video.length != 0 ">
+                        <div class="video-card" v-for=' video in popular_video.slice(0,12)'>
+                            <a :href="`/${video.id}/`">
+                                <img :src="video.title_image" alt="">
+                                <div class="about">
+                                    <p>{{ video.title }}</p>
+                                    <p1>{{ video.views_counter }}</p1>  
+                                    <p1> {{video.date_public}} </p1>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nothing-video-slider" v-else>
+                        <p>У пользователя пока нету видео</p>
+                    </div>
+                </div>
+        </div>
+    {% endverbatim %}
+    {% verbatim %}
+        <div id="content-video">
+            <div class="all-video">
+                <div v-if="new_video.length != 0 ">
+                    <div class="video-card" v-for="video in new_video">
+                        <a :href="`/${video.id}/`">
+                            <img :src="video.title_image" alt="">
+                            <div class="about">
+                                <p>{{ video.title }}</p>
+                                
+                                <p1>{{ video.views_counter }}</p1>  
+                                <p1> {{video.date_public}} </p1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nothing-video" v-else>
+                    <p>У пользователя пока нету видео</p>
+                </div>
+                
+            </div>
+        </div>
+        {% endverbatim %}
+        {% verbatim %}
+        <div id="content-playlists">
+            <div v-if="playlists.length != 0">
+                <div class="playlist-card" v-for="playlist in playlists">
+                    <a :href="`/playlist/${playlist.id}/`">
+                        <div class="title-image" v-if="playlist.title_image != null">
+                            <img :src="playlist.title_image" alt="">
+                            
+                        </div>
+                        <div class="none-title-image" v-else>
+                            
+                        </div>
+                        <p>{{ playlist.name }}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="playlist-absent" v-else>
+                <p>(｡╯︵╰｡)</p>
+                <p1>У пользователя пока нет плейлистов</p1>
+            </div>
+        </div>
+        {% endverbatim %}
+        {% verbatim %}
+        <div id="content-community">
+            <div v-if="communityMassage.length != 0">
+                <div class="communityMassage" v-for="massage in communityMassage">
+                        <div class="avtor-comment">
+                            <a :href="`/user/${massage.avtor.id}/`">
+                                <img :src="massage.avtor.avatar" alt="">
+                                <p>{{ massage.avtor.username }}</p>
+                            </a>
+                        </div>
+                    <p>{{ massage.text }}</p>
+                </div>
+            </div>
+            <div class="nothing-massage" v-else>
+                <p>У пользователя пока нету сообщений</p>
+            </div>
+        </div>
+        {% endverbatim %}
+        <div id="content-aboutchanel">
+            contnet-aboutchanel
+        </div>
+
+    
+</div>
+<script src="{% static 'user/js/user_page.js' %}"></script>
+<script src="{% static 'video/js/user_page_video.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,344 @@
+.search{
+    position: fixed;
+    background-color: white;
+    z-index: 2;
+    display: flex;
+    height: 60px;
+    top:0px;
+    width: 100%;
+}
+.user_page{
+    z-index: 2;
+    position: fixed;
+    left:95%;
+    top:10px;
+}
+.user_page img{
+    width: 35px;
+    object-fit: cover;
+    height: 35px;
+    border:2px solid black;
+    border-radius: 100%;
+}
+.search a{
+    text-decoration: none;
+    color:black;
+    left:55px;
+    position: relative;
+    width: 250px;
+}
+.logo{
+    display: flex;
+    top:10px;
+    position: relative;
+    flex-direction: row;
+}
+.logo img{
+    width: 55px;
+    height: 38px;
+}
+.logo p{
+    text-align: center;
+    font-size: 24px;
+    left:10px;
+    top:3px;
+    font-family: 'JejuGothic';
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+.container{
+    display: flex;
+}
+.form-search{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.form-search input{
+    border-top-left-radius: 20px 20px;
+    border-bottom-left-radius: 20px 20px;
+    width: 25%;
+    height: 30px;
+    padding-left: 10px;
+    margin-top: 7px;
+    padding-bottom: 3px;
+    border: 1px solid rgb(197, 197, 197);
+    outline: none;
+}
+
+.form-search input:focus-visible{
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 0%;
+    border-top-left-radius: 20px 20px;
+    border-bottom-left-radius: 20px 20px;
+}
+.button-submit button{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 30px;
+    width: 40px;
+    margin-top: 7px;
+    border-top-right-radius: 20px 20px;
+    border-bottom-right-radius: 20px 20px;
+    border: 1px solid  rgb(197, 197, 197);
+}
+
+.navigation{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    width:50px;
+    height: 1020px;
+    margin-top: -30px;
+    transition: 0.15s;
+    position: fixed;
+    background-color: #aaaaaa;
+}
+.navigation p{
+    display: none;
+}
+.navigation:hover{
+    width: 250px;
+    display: flex;
+    align-items: flex-start;
+}
+.navigation:hover~#content-div{
+    filter: blur(1.2em);
+}
+
+.navigation:hover #saved-playlist>p,
+.navigation:hover #see-later>p,
+.navigation:hover #your-video>p,
+.navigation:hover #history-viewed>p,
+.navigation:hover #library>p,
+.navigation:hover #trends>p,
+.navigation:hover #games>p,
+.navigation:hover #music>p,
+.navigation:hover #news>p{
+    display: block;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    margin-left: 10px;
+    font-family: 'Nunito', sans-serif;
+}
+#playlists-link,#watch_later-link,#uvideo-link,#history-link,#trends-link,#games-link,#music-link,#news-link{
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+    height: 40px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+    transition: 0.25s;
+}
+#library-link{
+    margin-top:40px;
+    color: black;
+    text-decoration: none;
+    height: 40px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+    transition: 0.25s;
+}
+.navigation>div>a:hover{
+    background-color: WHITE;
+    border-radius: 20px;
+}
+ #your-video, #see-later,#saved-playlist,#library,#history-viewed,#trends,#games,#music,#news{
+    display: flex;
+    left:7px;
+    position:relative;
+}
+.link-video{
+    position:fixed;
+    width: 97%;
+    height: 100%;
+    z-index: 1;
+    top:0px;
+    left:0px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.link-video>div{
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    position: relative;
+}
+.link-video>div>p,.list-playlist>div>p,.create-playlist>div>p{
+    text-align: center;
+    margin-top:5px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+.link-video>div>button{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:30px;
+    height: 30px;
+    border-radius: 100%;
+    border: none;
+}
+.link-video>div>button:hover , .close:hover{
+    background-color:#aaaaaa;
+}
+.link-video>div>input{
+    position: relative;
+    top:65px;
+    left:90px;
+    width: 220px;
+    height: 45px;
+}
+#content-div{
+}
+.list-playlist{
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    display: none;
+    justify-content: center;
+}
+body{
+
+}
+.playlist{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.playlist>ul{
+    margin-bottom: 15px;
+}
+
+.create-playlist{
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    display: none;
+    justify-content: center;
+}
+
+.playlists{
+    width: 370px;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1rem;
+}
+.playlists>ul{
+    padding-left: 0px;
+    width: 100%;
+}
+.playlists>ul>button{
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: 0.15s;
+}
+.playlists>ul>button>svg{
+    margin-right: 5px;
+}
+.playlists>ul>button:hover{
+    background-color: #aaaaaa;
+}
+.list-playlist>div,.create-playlist>div{
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    position: relative;
+
+}
+.list-playlist>div,.inputform-playlist{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.create-playlist>div>p1{
+    margin-left: 25px;
+    font-family: 'Arimo', sans-serif;
+}
+.inputform-playlist{
+    width: 100%;
+}
+.inputform-playlist>input{
+    width: 80%;
+    border-radius: 10px;
+    border: 1px solid #aaaaaa;
+    outline: none;
+    padding-left: 10px;
+}
+.create-button{
+    width: auto;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    margin-top: 20px;
+    font-family: 'Arimo', sans-serif;
+}
+.create-button:hover{
+    background-color: #aaaaaa;
+}
+.close{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:30px;
+    height: 30px;
+    border-radius: 100%;
+    border: none;
+}
+.create{
+    width: 80%;
+    border: none;
+    background-color: white;
+    transition: 0.15s;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-family: 'Arimo', sans-serif;
+}
+.create:hover{
+    background-color: grey;
+}
+.error-massage{
+    background-color: red;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: auto;
+    display: none;
+}
+.error-massage>p{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Arimo', sans-serif;
+}

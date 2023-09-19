@@ -1,0 +1,28 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+{%verbatim%}
+
+<div class="video_found" id="video_found" >
+    <div class="container" v-if="videos.length != 0" >
+        <div class="videoInfo" v-for="video in videos">
+            <a :href="video.id + '/'">
+                <img :src="video.title_image" alt="">
+                <div class="about-video">
+                    <div class="info-video">
+                        <p>{{ video.title }}</p>
+                        <p>{{ video.owner_username }}</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    <div class="notresult" style="position:relative;top:100px;display: flex;justify-content: center;" v-else>
+        <p>Нет результатов</p>
+    </div>
+{% endverbatim %}
+
+</div>
+<script src="{% static 'video/js/search_video.js' %}"></script>
+{% endblock %}

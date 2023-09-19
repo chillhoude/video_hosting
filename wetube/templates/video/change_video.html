@@ -1,0 +1,50 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<link  rel="stylesheet" href="{% static 'video/css/change_video.css' %}">
+{% verbatim %}
+<div class="video">
+    <div  class="video-player">
+        <p>Видео</p>
+        <video @click="selectVideoFile()" onmouseover="videoPlay(this)" onmouseout="videoPause(this)" muted="muted" type="video/mp4" id="video-self" :src="video"  :poster="title_image"></video>
+        <input type="file" id="video-file">
+    </div>
+    <div @click="selectTitleImageFile()" class="title-image">
+        <p>Заставка видео</p>
+        <img  :src="title_image" alt="">
+        <input type="file" id="title_image"> 
+    </div>
+    <div class="video-info">
+        <p>Название видео</p>
+        <input type="text" v-model="title" name="title">
+        <p>Описание видео</p>
+        <textarea name="description"  v-model="description" id="" cols="120" rows="20"></textarea>
+        <p>Жанр видео</p>
+        <select name="genre-video" id="genre">
+            <option v-if="genre == 'Game'" selected value="Game">Game</option>
+            <option v-else value="Game">Game</option>
+            <option v-if="genre == 'Travel'" selected value="Travel">Travel</option>
+            <option v-else value="Travel">Travel</option>
+            <option v-if="genre == 'News'" selected value="News">News</option>
+            <option v-else value="News">News</option>
+            <option v-if="genre == 'Music'" selected value="Music">Music</option>
+            <option v-else value="Music">Music</option>
+            <option v-if="genre == 'Trailer'" selected value="Trailer">Trailer</option>
+            <option v-else value="Trailer">Trailer</option>
+        </select>
+        <p>Статус видео</p>
+        <select name="status-video" id="status">
+            <option v-if="status_video == 'Close'" selected value="Close">Close</option>
+            <option v-else value="Close">Close</option>
+            <option v-if="status_video == 'On link'" selected value="On link">On link</option>
+            <option v-else value="On link">On link</option>
+            <option v-if="status_video == 'Open'" selected value="Open">Open</option>
+            <option v-else value="Open">Open</option>
+        </select>
+    </div>
+    
+</div>
+{% endverbatim %}
+<script src="{% static 'video/js/change_video.js' %}"></script>
+{% endblock %}

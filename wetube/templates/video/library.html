@@ -1,0 +1,92 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+
+{% verbatim%}
+<div class="content">
+    <div class="history_viewed" >
+        <p>История</p>
+        <a href="/me/history/" v-if='request_data_history.length > 7'>Просмотреть ёще</a>
+        <div class="history-slider" v-if="request_data_history.length !=0">
+            <div v-for="video_card in request_data_history.slice(0,7)">
+                <a style="text-decoration: none;" :href="`/${video_card.video.id}/`">
+                    <img id="video-img" :src="video_card.video.title_image" alt="">
+                    <div class="video-history">
+                        <p id="title" >{{video_card.video.title}}</p>
+                        <div class="descript-text">
+                            <a :href="`/user/${video_card.video.avtor.username}/`"><img :src="video_card.video.avtor.avatar" alt="">
+                                <p1>{{video_card.video.avtor.username}}</p1></a>
+                            <p1>{{video_card.views_counter}}</p1>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+        <div class="nothing-video" v-else>
+            <p>Вы пока не посмотрели ни одного видео </p>
+        </div>
+    </div>
+    
+    <div class="like" >
+        <p>Понравившиеся</p>
+        <a href="" v-if='request_data_like.length > 7'>Просмотреть ёще</a>
+        <div class="liked-slider" v-if="request_data_like.length != 0">
+            <div class="video-cart" v-for="video_card in request_data_like">
+                <a :href="'/'+video_card.video.id+'/'">
+                    <img id="video-img" :src="video_card.video.title_image" alt="">
+                    <div class="video-info">
+                        <p>{{ video_card.video.title }}</p>
+                        <a :href="'/user/'+video_card.video.avtor.username +'/'" :title="video_card.video.avtor.username">
+                            <div class="avtor-info">
+                                <img :src="video_card.video.avtor.avatar" alt="">
+                                <p>{{ video_card.video.avtor.username }}</p>
+                            </div>
+                            <p1>{{ video_card.views_counter}}</p1>
+                        </a>
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="nothing-video" v-else>
+            <p>У вас нет понравившиеся видео</p>
+        </div>
+       
+    </div>
+    
+    <div class="watch_later">
+        <p >Смотреть позже</p>
+        <a href="" v-if='request_data_watch_later.length > 7'>Просмотреть ёще</a>
+        <div class="watch-later-slider" v-if='request_data_watch_later.length != 0'>
+            <div class="video-cart" v-for="video in request_data_watch_later.slice(0,7)">
+                <a :href="'/'+video.id+'/'">
+                    <img id="video-img" :src="video.title_image" alt="">
+                    <div class="video-info">
+                        <p>{{ video.title }}</p>
+                        <a :href="'/user/'+video.avtor.username +'/'" :title="video.avtor.username">
+                            <div class="avtor-info">
+                                <img :src="video.avtor.avatar" alt="">
+                                <p>{{ video.avtor.username }}</p>
+                            </div>
+                        </a>
+                        <p1>{{ video.views_counter}}</p1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="nothing-video" v-else>
+            <p>Вы пока не добавили ни одного видео в раздел "Смотреть позже"</p>
+        </div>
+    </div>
+    
+    <div class="saved_playlist" v-if='request_data_saved_playlist.length != 0'>
+        <p>Сохраненные плейлисты</p>
+    </div>
+</div>
+{% endverbatim %}
+
+<link rel="stylesheet" href="{% static 'video/css/library.css' %}">
+<script src="{% static 'video/js/library_video.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'video/css/main.css' %}">
+
+    {%verbatim%}
+    <div class="video-view" id="video_shield" >
+        <div class="video-performance" v-for="video in videos.slice(0,10)" >
+            <a :href="video.id + '/'">
+                <img :src="video.title_image" alt="">
+                <div @click="reqeustOnVideo(video.id)" class="about-video">
+                    <a id="user" :href="`/user/${video.avtor.username}/`" :title="video.avtor.username"><img :src="video.avtor.avatar" alt=""></a>
+                    <div class="info-video">
+                        <a id="title" :href="`/${video.id}/`"><p>{{ video.title }}</p></a>
+                        <a :href="`/user/${video.avtor.username}`" :title="video.avtor.username"><p1>{{video.avtor.username}}</p1></a>
+                        <a :href="`/${video.id}/`">
+                            <p1>{{ video.views_counter }}</p1>
+                        </a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {%endverbatim%}
+
+    <div class="history" >
+        <p style="left:5%; width:10%;position: relative;">Your history</p>
+        <hr>
+        <hr>
+    </div>
+    
+    <script src="{% static 'video/js/main_index.js' %}"></script>
+{% endblock %}

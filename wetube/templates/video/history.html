@@ -1,0 +1,47 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'video/css/history.css' %}">
+{% verbatim %}
+<div class="history">
+    <div v-for="video,index in videos">
+        <div class="date" v-if="index != 0">
+            <p  v-if="videos[index].date != videos[index-1].date">{{video.date}}</p>
+            <a style="text-decoration: none;" :href="`/${video.video_pk}/`">
+                <div class="video" :title="video.video_title">
+                    <img :src="video.video_image" alt="">
+                    <div class="info-video">
+                        <p>{{video.video_title}}</p>
+                        <div class="avtor-info">
+                            <img :src="video.avtor_avatar" alt="">
+                            <p1>{{video.avtor_name}}</p1>
+                        </div>
+                        <p1>{{video.counter_view}} </p1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="date" v-else>
+            <p>{{video.date}}</p>
+            <a style="text-decoration: none;" :href="`/${video.video_pk}/`">
+                <div class="video" :title="video.video_title">
+                    <img :src="video.video_image" alt="">
+                    <div class="info-video">
+                        <p>{{video.video_title}}</p>
+                        <div class="avtor-info">
+                            <img :src="video.avtor_avatar" alt="">
+                            <p1>{{video.avtor_name}}</p1>
+                        </div>
+                        <p1>{{video.counter_view}} </p1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    
+</div>
+{% endverbatim %}
+<script src="{% static 'video/js/video_history.js' %}"></script>
+{% endblock %}

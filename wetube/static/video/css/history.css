@@ -1,0 +1,44 @@
+.history {
+    position: relative;
+    left:7%;
+    top:100px;
+    width: 80%;
+}
+.date>p{
+    font-size: 18px;
+    left:-30px;
+    position: relative;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+.video{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:20px;
+}
+.video>img{
+    min-width: 250px;
+    max-width: 250px;
+    max-height: 150px;
+    border-radius: 10px;
+}
+.info-video{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.info-video>p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color:black;
+    height: calc(24px*2);
+}
+.info-video>p1,.avtor-info>p1{
+    font-size: 15px;
+    font-family: 'Arimo', sans-serif;
+    color:rgb(150, 150, 150);
+}
+.avtor-info>img{
+    width: 35px;
+    height: 35px;
+}

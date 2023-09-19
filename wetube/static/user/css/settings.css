@@ -1,0 +1,85 @@
+.user{
+    position: relative;
+    left:4%;
+    top:100px;
+    width: 86%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+#user-avatar{
+    position: relative;
+    height: 145px;
+    overflow: hidden;
+    border-radius: 100%;
+    cursor: pointer;
+}
+#user-avatar>img{
+    width: 145px;
+    height: 145px;
+    border-radius: 100%;
+}
+#user-avatar>input[type=file]{
+    display: none;
+}
+#user-avatar::after{
+    content: 'Ваше фото';
+    position: absolute;
+    bottom:-100px;
+    left:0px;
+    right: 0px;
+    height: 50%;
+    background-color: black;
+    display: flex;
+    color:#6CCFF6;
+    opacity: 0.6;
+    transition: 0.3s;
+    justify-content: center;
+    padding: 5px;
+}
+#user-avatar:hover:after{
+    bottom: 0px;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    position: relative;    
+}
+.user-info>input[type='text']{
+    margin-bottom: 20px;
+    width: 400px;
+    border: 1px solid #aaaaaa;
+    border-radius: 20px;
+    outline: none;
+    padding-left: 10px;
+}
+.user-info>textarea{
+    margin-bottom: 40px;
+    border: 1px solid #aaaaaa;
+    border-radius: 20px;
+    outline: none;
+    padding-left: 10px;
+    resize: none;
+    padding-top: 5px;
+}
+.user-info>p{
+    margin-bottom: 7px;
+    font-size: 17px;
+    font-family: 'Nunito', sans-serif;
+}
+.user-info>button{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    border: 2px solid #0066ff;
+    background-color: #6CCFF6;
+    border-radius: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    transition: 0.15s;
+}
+.user-info>button:hover{
+    border: 2px solid #00a2ff;
+    background-color: #2bbcff;
+}

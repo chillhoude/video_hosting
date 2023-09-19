@@ -1,0 +1,42 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'video/css/playlist.css' %}">
+{% verbatim %}
+<div class="playlist">
+    <div class="shield">
+
+        <img v-if="playlist.title_image != null" :src="playlist.title_image" alt="">
+        <ul v-else class="title-image"></ul>
+        <a :href="`/user/${playlist.avtor.username}/`">
+            <div class="avtor-info">
+                <img :src="playlist.avtor.avatar" alt="">
+                <p>{{ playlist.avtor.username }}</p>
+            </div>
+        </a>
+        <p>{{ playlist.name }}</p>
+    </div>
+    <div class="video">
+        <p>Видео</p>
+        <div class="video-card" v-for="video in playlist.video">
+            <a :href="`/${video.id}/`">
+                <img :src="video.title_image" alt="">
+                <div class="info-video">
+                    <p>{{ video.title }}</p>
+                    <a :href="`/user/${video.avtor.username}/`">
+                        <div class="avtor-video-info">
+                            <img :src="video.avtor.avatar" alt="">
+                            <p>{{ video.avtor.username }}</p>
+                        </div>
+                    </a>
+                    
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endverbatim %}
+
+<script src="{% static 'video/js/playlist.js' %}"></script>
+
+{% endblock %}

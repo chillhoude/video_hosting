@@ -1,0 +1,125 @@
+.playlist{
+    top:100px;
+    left:3%;
+    position: absolute;
+    width: 93%;
+
+}
+.title-image{
+    width: 250px;
+    height: 140px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color: grey;
+    z-index: 1;
+}
+.shield>img{
+    width: 250px;
+    height: 140px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+    z-index: 1;
+}
+.shield{
+    width: 100%;
+    height: 250px;
+    display: flex;
+}
+.shield::before{
+    content: ' ';
+    background-color: #aaaaaa;
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    z-index: 0;
+    border-radius: 40px;
+    opacity: 0.6;
+}
+.shield>p{
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 10px;
+    z-index: 1;
+}
+.shield>a{
+    text-decoration: none;
+    color:black;
+    position: absolute;
+    top:160px;
+    margin-left: 20px;
+}
+.avtor-info>img,.avtor-video-info>img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.avtor-info{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+}
+.avtor-info>p{
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Arimo', sans-serif;
+}
+.video{
+    position: relative;
+    margin-left: 20px;
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.video>p{
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+}
+.video-card{
+    display: flex;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.video-card>a>img{
+    width: 250px;
+    height: 140px;
+    border-radius: 20px;
+}
+.video-card>a{
+    display: flex;
+    text-decoration: none;
+}
+.info-video>a{
+    text-decoration: none;
+}
+.info-video>a>p{
+    width: auto;
+    height: 40px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    color:black;
+
+}
+.avtor-video-info{
+    display: flex;
+    align-items: center;
+    height: 45px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.avtor-video-info>p{
+    margin-top: 10px;
+    margin-left: 10px;
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+    font-family: 'Arimo', sans-serif;
+}

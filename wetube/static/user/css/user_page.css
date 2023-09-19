@@ -1,0 +1,62 @@
+.user_main{
+    display: flex;
+    position: relative;
+    top:100px;
+    left:10%;
+    width:80%;
+}
+.user_main img{
+    width: 140px;
+}
+.user_main button{
+    height: 30px;
+    position: absolute;
+    right:20px;
+    top:calc(80% / 2)
+}
+.user-info{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.user-info p{
+    font-size: 20px;
+    font-family: 'Arimo', sans-serif;
+}
+.avtor-comment>a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+  }
+  .avtor-comment>a>p{
+    font-family: Arimo, sans-serif;
+    font-size: 15px;
+  }
+  #content-community>div{
+    width: 60%;
+    
+  }
+  #content-community{
+    justify-content: center;
+  }
+  .avtor-comment>a>img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+  }
+  .avtor-comment>a{
+    color: black;
+    text-decoration: none;
+  }
+  .communityMassage{
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .communityMassage>p{
+    white-space: pre-line;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    margin-left: 15px;
+  }

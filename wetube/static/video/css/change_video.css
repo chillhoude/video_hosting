@@ -1,0 +1,82 @@
+.video{
+    position: relative;
+    top:100px;
+    left: 5%;
+    width: 90%;
+}
+.video-info{
+    display: flex;
+    flex-direction: column;
+}
+.video-info>input[type=text]{
+    margin-bottom: 15px;
+    width: 40%;
+    border: 1px solid rgb(197, 197, 197);
+    outline: none;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.video-info>textarea{
+    width: 60%;
+    margin-bottom: 20px;
+    border: 1px solid rgb(197, 197, 197);
+    outline: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    resize: none;
+}
+.video-info>select{
+    width: 25%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(197, 197, 197);
+}
+.video-info>p,.title-image>p,.video-player>p{
+    margin-bottom: 0px;
+    margin-top: 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+}
+.title-image>img{
+    width: 285px;
+    height: 145px;
+    border-radius: 20px;
+}
+.title-image{
+    position: relative;
+    width:285px ;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.title-image::after{
+    content: "Выбрать заставку";
+    display: flex;
+    justify-content: center;
+    color:white;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 30%;
+    background-color: black;
+    top:100%;
+    transition: 0.2s;
+    opacity: 0.6;
+}
+.title-image:hover::after{
+    top:72%;
+}
+.title-image>input[type=file]{
+    display: none;
+}
+.video-player{
+    width: auto;
+}
+.video-player>video{
+    width: 712px;
+    height: 420px;
+    object-fit: cover;
+}
+.video-player>input[type=file]{
+    display: none;
+}

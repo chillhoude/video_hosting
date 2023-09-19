@@ -1,0 +1,23 @@
+.content{
+    position: relative;
+    top:100px;
+    left:3%;
+    width: 95%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.content>p{
+    font-size: 40px;
+    font-weight: bold;
+}
+.content>p1{
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+}
+.content>p1>a{
+    color: black;
+    font-weight: bold;
+}

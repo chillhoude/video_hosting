@@ -1,0 +1,29 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'user/css/settings.css' %}">
+{% verbatim %}
+<div class="user">
+    <div @click="avatarSelector()" id="user-avatar">
+        <input type="file" id="file-avatar">
+        <img  :src="avatar" alt="">
+    </div>
+    
+    <div class="user-info">
+        <p>Никнейм:</p>
+        <input type="text" placeholder="Никнейм" id="usernmae" v-model="username">
+        <p>Почта:</p>
+        <input type="text" placeholder="Почта" id="email" v-model="email">
+        <p>Фамилия:</p>
+        <input type="text" placeholder="Фамилия" id="first-name" v-model="first_name">
+        <p>Имя:</p>
+        <input type="text" placeholder="Имя" id="last-name" v-model="last_name">
+        <p>Биография:</p>
+        <textarea name="bio" placeholder="Биография" id="" v-model="bio" cols="120" rows="10"></textarea>
+        <button @click="sendDataUser()">Сохранить</button>
+    </div>
+</div>
+{% endverbatim %}
+<script src="{% static 'user/js/settings.js' %}" ></script>
+{% endblock %}

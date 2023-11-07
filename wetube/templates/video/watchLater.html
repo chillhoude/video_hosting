@@ -1,0 +1,36 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Смотреть позже{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'video/css/watchLater.css' %}">
+{% verbatim %}
+<div class="content">
+
+    <div class="info">
+        <div v-if="videos.length == 0" class="non-title"></div>
+        <img v-else :src="videos[0].title_image" id="title-image" alt="">
+        <div class="subdiv">
+            <p id="title">Смотреть позже</p>
+            <p id="count">{{ videos.length }} видео</p>
+        </div>
+    </div>
+    <div class="video">
+        <div id="video-card" v-for="video in videos">
+            <a :href="`/${video.id}/`">
+                <img :src="video.title_image" alt="">
+                <div class="video-info">
+                    <p id="title-video">{{ video.title }}</p>
+                    <div class="avtor-video">
+                        <img :src="video.avtor.avatar" alt="">
+                        <p>{{video.avtor.username}}</p>
+                    </div>
+                    <p1 id="count-view"> {{ video.views_counter }}</p1>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endverbatim %}
+<script src="{% static 'video/js/watchLater.js' %}"></script>
+{% endblock %}

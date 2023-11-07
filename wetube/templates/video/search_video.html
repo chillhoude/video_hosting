@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Главная{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'video/css/searchVideo.css' %}">
 {%verbatim%}
 
 <div class="video_found" id="video_found" >
@@ -12,7 +13,10 @@
                 <div class="about-video">
                     <div class="info-video">
                         <p>{{ video.title }}</p>
-                        <p>{{ video.owner_username }}</p>
+                        <div class="avtor-video">
+                            <img :src="video.avtor.avatar" alt="">
+                            <p>{{video.avtor.username}}</p>
+                        </div>
                     </div>
                 </div>
                 </a>

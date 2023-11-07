@@ -7,7 +7,7 @@ new Vue({
         search(){
             if (this.search_str.length != 0)
             {
-                window.location.href = 'search='+this.search_str
+                window.location = window.location.origin + '/search='+this.search_str
             }
             else
             {

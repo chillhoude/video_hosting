@@ -31,8 +31,8 @@ new Vue({
     created(){
         axios.get(`/api/video/new/${document.location.pathname.split('/')[2]}/`)
         .then(request=>{
+            console.log(request.data)
             this.videos = request.data
-            this.videos[0].title = 'jkasdhklasdhjalisdjalsdjalsdj'
             for(let i=0;i<this.videos.length;i++){
                 if (this.videos[i].views_counter == 1){
                     this.videos[i].views_counter = this.videos[i].views_counter + ' просмотр'

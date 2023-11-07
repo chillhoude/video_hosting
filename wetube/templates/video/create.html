@@ -1,0 +1,64 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Создание видео{% endblock %}
+{% block content %}
+<link  rel="stylesheet" href="{% static 'video/css/create_video.css' %}">
+{% verbatim %}
+<div class="video">
+    <div class="video-player">
+        <p id="video-p">Видео</p>
+        <div @click='openVideoFile()' class="video-ground" id="svg-video">
+            <div class="video-svg">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-earmark-play" viewBox="0 0 16 16">
+                    <path d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z"/>
+                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                </svg>
+            </div>
+        </div>
+        <video  muted="muted" type="video/mp4" id="video-self" :src="video.files[0]"  poster=""></video>
+        <input type="file" id="video_file" accept="video/mp4, video/avi"> 
+    </div>
+    <div class="title-image">
+        <p id="img-p">Заставка видео</p>
+        <div @click="openImageFile()" id="svg-image" class="button-img">
+            <div class="svg-upload">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                </svg>
+            </div>
+        </div>
+        <img src="" id="image_video" alt="">
+        <input type="file" id="title_image_file" accept="image/png, image/jpeg"> 
+    </div>
+    <div class="video-info">
+        <p id="name_video_p">Название видео</p>
+        <input type="text" v-model="title" name="title">
+        <p id="description_video_p">Описание видео</p>
+        <textarea name="description"  v-model="description" id="" cols="120" rows="20"></textarea>
+        <p id="genre_video_p">Жанр видео</p>
+        <select name="genre-video" id="genre">
+            <option selected value="Game">Игры</option>
+            <option value="Travel">Путишествие</option>
+            <option value="News">Новости</option>
+            <option value="Music">Музыка</option>
+            <option value="Trailer">Трейлер</option>
+        </select>
+        <p>Статус видео</p>
+        <select name="status-video" id="status">
+            <option value="Close">Закрытый доступ</option>
+            <option value="On link">Доступ по ссылке</option>
+            <option value="Open">Открытый доступ</option>
+        </select>
+        <div class="create-massage" id="info-massage">
+            <p>{{ error_text }}</p>
+        </div>
+        <div class="button-operation">
+            <button @click="createVideoAxio()" class="save">Опубликовать видео</button>
+        </div>
+    </div>
+</div>
+
+{% endverbatim %}
+<script src="{% static 'video/js/create_video.js' %}"></script>
+{% endblock %}

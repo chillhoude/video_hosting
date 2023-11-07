@@ -342,3 +342,8 @@ body{
     margin-right: 10px;
     font-family: 'Arimo', sans-serif;
 }
+.user_page>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

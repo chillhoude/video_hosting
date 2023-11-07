@@ -7,33 +7,33 @@
 <div class="history">
     <div v-for="video,index in videos">
         <div class="date" v-if="index != 0">
-            <p  v-if="videos[index].date != videos[index-1].date">{{video.date}}</p>
-            <a style="text-decoration: none;" :href="`/${video.video_pk}/`">
-                <div class="video" :title="video.video_title">
-                    <img :src="video.video_image" alt="">
+            <p  v-if="videos[index].date_view != videos[index-1].date_view">{{video.date_view}}</p>
+            <a style="text-decoration: none;" :href="`/${video.video.id}/`">
+                <div class="video">
+                    <img :src="video.video.title_image" alt="">
                     <div class="info-video">
-                        <p>{{video.video_title}}</p>
+                        <p>{{video.video.title}}</p>
                         <div class="avtor-info">
-                            <img :src="video.avtor_avatar" alt="">
-                            <p1>{{video.avtor_name}}</p1>
+                            <img :src="video.video.avtor.avatar" alt="">
+                            <p1>{{video.video.avtor.username}}</p1>
                         </div>
-                        <p1>{{video.counter_view}} </p1>
+                        <p1>{{video.views_counter}} </p1>
                     </div>
                 </div>
             </a>
         </div>
         <div class="date" v-else>
-            <p>{{video.date}}</p>
-            <a style="text-decoration: none;" :href="`/${video.video_pk}/`">
-                <div class="video" :title="video.video_title">
-                    <img :src="video.video_image" alt="">
+            <p>{{video.date_view}}</p>
+            <a style="text-decoration: none;" :href="`/${video.video.id}/`">
+                <div class="video">
+                    <img :src="video.video.title_image" alt="">
                     <div class="info-video">
-                        <p>{{video.video_title}}</p>
+                        <p>{{video.video.title}}</p>
                         <div class="avtor-info">
-                            <img :src="video.avtor_avatar" alt="">
-                            <p1>{{video.avtor_name}}</p1>
+                            <img :src="video.video.avtor.avatar" alt="">
+                            <p1>{{video.video.avtor.username}}</p1>
                         </div>
-                        <p1>{{video.counter_view}} </p1>
+                        <p1>{{video.views_counter}} </p1>
                     </div>
                 </div>
             </a>

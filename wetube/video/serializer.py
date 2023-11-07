@@ -21,19 +21,26 @@ class VideoFullSerializer(serializers.ModelSerializer):
 
 
 class VideoModelCUDSerializer(serializers.ModelSerializer):
+    video = serializers.FileField(allow_empty_file=True,required=False)
+    title_image = serializers.ImageField(allow_empty_file=True,required=False)
     class Meta:
         model = VideoModel
         fields =['title','id','video','description','title_image','genre','status','avtor']
 
     def update(self, instance, validated_data):
         instance.title = validated_data['title']
-        instance.video = validated_data['video']
+        if 'video' in  validated_data:
+            instance.video = validated_data['video']
+        if 'title_image' in validated_data:
+            instance.title_image = validated_data['title_image']
         instance.description = validated_data['description']
-        instance.title_image = validated_data['title_image']
         instance.genre = validated_data['genre']
         instance.status = validated_data['status']
         instance.save()
         return instance
+    
+    def create(self, validated_data):
+        return VideoModel.objects.create(**validated_data)
 
 #сериализатор сокращенной информации по видео
 class VideoPreviewSerializer(serializers.ModelSerializer):
@@ -43,12 +50,14 @@ class VideoPreviewSerializer(serializers.ModelSerializer):
         model = VideoModel
         fields = ('title','id','avtor','video','views_counter','title_image','date_public',)
 
+
 class HistoryRelationSerializer(serializers.ModelSerializer):
     video = VideoPreviewSerializer()
     views_counter = serializers.IntegerField(read_only=True)
+    date_view = serializers.DateTimeField(read_only=True)
     class Meta:
         model=ReatingVideoRelation
-        fields=['video','views_counter']
+        fields=['video','views_counter','date_view']
 
 #сериализатор сообщений к видео
 class CommentVideoSerializer(serializers.ModelSerializer):

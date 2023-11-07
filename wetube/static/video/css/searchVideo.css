@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top:70px;
+}
+.videoInfo>a{
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    text-decoration: none;
+}
+.videoInfo>a>img{
+    border-radius: 40px;
+    object-fit: cover;
+    width: 260px;
+    height: 150px;
+}
+.info-video>p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: black;
+    margin-left: 10px;
+    hyphens: auto;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.avtor-video{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+.avtor-video>img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}
+.avtor-video>p{
+    margin-top: 10px;
+    margin-left: 5px;
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+    font-family: 'Arimo', sans-serif;
+    font-size: 15px;
+}

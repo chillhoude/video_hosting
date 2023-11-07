@@ -2,13 +2,18 @@
 {% load static %}
 {% block title %}Главная{% endblock %}
 {% block content %}
+<div class="AcceptDelete">
+    <p>Вы точно хотите удалить видео?</p>
+    <button onclick="acceptDelete()" class="accept">Да</button>
+    <button onclick="closeMenuDelete()" class="close-menu">Нет</button>
+</div>
 <link  rel="stylesheet" href="{% static 'video/css/change_video.css' %}">
 {% verbatim %}
 <div class="video">
-    <div  class="video-player">
+    <div class="video-player">
         <p>Видео</p>
         <video @click="selectVideoFile()" onmouseover="videoPlay(this)" onmouseout="videoPause(this)" muted="muted" type="video/mp4" id="video-self" :src="video"  :poster="title_image"></video>
-        <input type="file" id="video-file">
+        <input type="file" id="video_file">
     </div>
     <div @click="selectTitleImageFile()" class="title-image">
         <p>Заставка видео</p>
@@ -42,6 +47,12 @@
             <option v-if="status_video == 'Open'" selected value="Open">Open</option>
             <option v-else value="Open">Open</option>
         </select>
+        <div class="button-operation">
+            <button @click="sendDataVideo()" class="save">Сохранить видео</button>
+            <button onclick="showApllyDelete()" class="delete">Удалить видео</button>
+        </div>
+        
+
     </div>
     
 </div>

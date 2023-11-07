@@ -16,6 +16,9 @@ router_playlist = routers.SimpleRouter()
 router_playlist.register(r'api/playlist',PlaylistView,basename='Playlist')
 router_commentcommunity = routers.SimpleRouter()
 router_commentcommunity.register(r'api/commentcommunity',CommentCommunityView,basename='CommentCommunityModel')
+roueter_videoobjective = routers.SimpleRouter()
+roueter_videoobjective.register(r'video/list',VideoObjectiveView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +29,7 @@ urlpatterns = [
     path('api/comment/<int:pk>/',CommentVideoView.as_view()),
     #frontend
     path('',main_page),
-    path('me/history/',history_page),
+    
     path('change/<pk>/',change_video_page),
     path('feed/history/',feed_history),
     path('feed/library/',feed_library),
@@ -34,11 +37,16 @@ urlpatterns = [
     path('feed/games/',feed_games),
     path('feed/music/',feed_music),
     path('feed/news/',feed_news),
+    path('tab/history/',history_page),
+    path('tab/library/',tab_library),
+    path('tab/watch-later/',tab_watchLater),
+    path('tab/my-video/',tab_myVideo),
     path('playlist/<int:pk>/',playlist_page),
     path('<int:pk>/',detail_video),
     re_path(r'^search=([а-я]|[А-Я])',search_video),
     re_path(r'^search=([a-z]|[A-Z]+)',search_video),
-    path('me/library/',library_page),
+    
+    path('video/create/',create_video_page),
     # user 
     path('user/<username>/',user_page),
     path('settings/<username>/',settings_user),
@@ -52,5 +60,6 @@ urlpatterns += router_video.urls
 urlpatterns += router_user.urls
 urlpatterns += router_playlist.urls
 urlpatterns += router_commentcommunity.urls
+urlpatterns += roueter_videoobjective.urls
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

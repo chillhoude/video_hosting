@@ -6,7 +6,7 @@ new Vue({
     },
     methods:{},
     created(){
-        axios.get('/api/video/?search='+this.search_str)
+        axios.get(`video/list/?search=${this.search_str}`)
         .then(response=>{
             this.videos = response.data;
             console.log(this.videos)

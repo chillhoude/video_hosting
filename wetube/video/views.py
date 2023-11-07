@@ -2,41 +2,47 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth.models import AnonymousUser
 from users.models import CustomUser
-from rest_framework import generics
+from rest_framework import generics,mixins
 from django.db.models import F,Q ,Count,Case,When,Value
 from django.utils import timezone
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
+
 
 from rest_framework import filters
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.authtoken.models import Token
 
 from .models import VideoModel, CommentUser,Hashtags,PlayList,ReatingVideoRelation
 from users.models import CustomUser
-from .permission_classes import IsOwnerOrReadOnly
+from .permission_classes import IsOwnerOrReadOnly, ReadOnly
 
 from .serializer import *
 
 
-class VideoView(ModelViewSet):
-    serializer_class = VideoFullSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields=['title'] 
+class VideoObjectiveView(ModelViewSet):
     queryset = VideoModel.objects.all()
-    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = VideoPreviewSerializer
+    filter_backends = [SearchFilter,filters.SearchFilter]
+    search_fields = ['title', 'avtor__username']
+
+class VideoView(ModelViewSet):
+    queryset = VideoModel.objects.all().select_related('avtor').annotate(views_counter=Count(F('video_reating__date_viewed')),)
+    serializer_class = VideoPreviewSerializer
+    # permission_classes = [IsOwnerOrReadOnly]
+
     def list(self,request,*args, **kwargs):
-        print(request.user)
         # если user не авторизирован
         if request.user == AnonymousUser():
-            instance = VideoModel.objects.all().select_related('avtor').annotate(views_counter=Count(F('video_reating__date_viewed')),)
-            serialize = VideoPreviewSerializer(instance, many=True)
+            queryset = VideoModel.objects.all().select_related('avtor').annotate(views_counter=Count(F('video_reating__date_viewed')),)
+            serialize = VideoPreviewSerializer(queryset, many=True)
             return Response(serialize.data)
         # если user авторизирован
         else:
-            instance = VideoModel.objects.all().select_related('avtor').annotate(views_counter=Count(F('video_reating__date_viewed')))
-            serialize = VideoPreviewSerializer(instance, many=True)
+            queryset = VideoModel.objects.all().select_related('avtor').annotate(views_counter=Count(F('video_reating__date_viewed')))
+            serialize = VideoPreviewSerializer(queryset, many=True)
             return Response(serialize.data)
+        
 
     def retrieve(self, request, *args, **kwargs):
         instance = VideoModel.objects.select_related('avtor').prefetch_related('reating').filter(pk=kwargs['pk']).annotate(
@@ -59,11 +65,20 @@ class VideoView(ModelViewSet):
         serialize = VideoFullSerializer(instance,many=True)
         return Response(serialize.data)
     def create(self, request, *args, **kwargs): 
-        pass
+        serializer =  VideoModelCUDSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
     def update(self, request, *args, **kwargs):
-        pass
+        instance = VideoModel.objects.get(pk=kwargs['pk'])
+        serializer = VideoModelCUDSerializer(data=request.data,instance=instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(status=status.HTTP_200_OK)
     def destroy(self, request, *args, **kwargs):
-        pass
+        instance = VideoModel.objects.get(pk=kwargs['pk'])
+        instance.delete()
+        return Response(status=status.HTTP_200_OK)
 
     @action(detail=True, methods=["get"], url_path=r'sc')
     def same_content(self,request, *args, **kwargs):
@@ -119,6 +134,10 @@ class VideoView(ModelViewSet):
     def new_user_video(self,request, *args, **kwargs):
         instance = VideoModel.objects.filter(avtor__username=kwargs['username']).select_related('avtor').order_by('-date_public').annotate(views_counter=Count(F('video_reating__date_viewed')),)
         return Response(VideoPreviewSerializer(instance, many=True).data)
+    @action(detail=False,methods=['get'],url_path='authuser-video')
+    def authuser_video(self,request, *args, **kwargs):
+        instance = VideoModel.objects.filter(avtor__username=request.user.username).select_related('avtor').order_by('-date_public').annotate(views_counter=Count(F('video_reating__date_viewed')),)
+        return Response(VideoPreviewSerializer(instance, many=True).data)
     # фильрация по самым популярным видео пользователя
     @action(detail=False,methods=['get'],url_path=r'popular/(?P<username>\w+)')
     def popular_user_video(self,request, *args, **kwargs):
@@ -132,12 +151,12 @@ class VideoView(ModelViewSet):
         return Response(HistoryRelationSerializer(instance, many=True).data)
     @action(detail=False,methods=['get'],url_path='watch-later')
     def get_auth_user_watchlatervideo(self,request,*args,**kwargs):
-        instance = VideoModel.objects.filter(watch_later=request.user).select_related('avtor').annotate(views_counter=Count('video_reating__date_viewed')).order_by('-watchlaterrelation__date')
+        instance = VideoModel.objects.filter(watch_later=request.user).select_related('avtor').annotate(views_counter=Count('video_reating__date_viewed')).order_by('watchlaterrelation__date')
         return Response(VideoPreviewSerializer(instance, many=True).data)
     @action(detail=False,methods=['get'],url_path='history')
     def get_auth_user_history(self,request,*args,**kwargs):
-        
-        instance = ReatingVideoRelation.objects.filter(user=request.user).order_by('-date_viewed').annotate(views_counter=Count('video__video_reating__date_viewed'))
+        instance = ReatingVideoRelation.objects.filter(user=request.user).order_by('-date_viewed').annotate(views_counter=Count('video__video_reating__date_viewed'),
+                                                                                                            date_view=F('date_viewed'))
         return Response(HistoryRelationSerializer(instance, many=True).data)
     @action(detail=True,methods=['get'],url_path='change')
     def get_video_change(self,requst,*args,**kwargs):
@@ -271,8 +290,7 @@ def main_page(request):
 
 def history_page(request):
     return render(request,'video/history.html')
-def library_page(request):
-    return render(request,'video/library.html')
+
 
 def detail_video(request,pk):
     return render(request,'video/video.html')
@@ -288,15 +306,31 @@ def feed_library(request):
 
 def feed_trends(request):
     return render(request,'video/feed_trends.html')
+
 def feed_games(request):
     return render(request,'video/feed_games.html')
+
 def feed_music(request):
     return render(request,'video/feed_music.html')
+
 def feed_news(request):
     return render(request,'video/feed_news.html')
+
+def tab_library(request):
+    return render(request,'video/library.html')
+
+def tab_watchLater(request):
+    return render(request,'video/watchLater.html')
+
+
+def tab_myVideo(request):
+    return render(request,'video/myVideo.html')
 
 def change_video_page(request,pk):
     return render(request,'video/change_video.html')
 
 def playlist_page(request,pk):
     return render(request,'video/playlist.html')
+
+def create_video_page(request):
+    return render(request,'video/create.html')

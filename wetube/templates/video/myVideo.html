@@ -1,0 +1,37 @@
+{% extends 'sample.html' %}
+{% load static %}
+{% block title %}Мои видео{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'video/css/myVideo.css' %}">
+{% verbatim %}
+<div class="content">
+    <p>Ваши видео:</p>
+    <div class="video">
+        <div id="video-card" v-for="video in videos">
+            <a :href="`/${video.id}/`">
+                <img :src="video.title_image" alt="">
+                <div class="video-info">
+                    <p id="title-video">{{ video.title }}</p>
+                    <div class="avtor-video">
+                        <img :src="video.avtor.avatar" alt="">
+                        <p>{{video.avtor.username}}</p>
+                    </div>
+                    <p1 id="count-view"> {{ video.views_counter }}</p1>
+                </div>
+            </a>
+            <div @click="showMenuOptions(video.id)" :id="`options_${video.id}`" class="options">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16" class="bi bi-three-dots-vertical">
+                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                </svg>
+            </div>
+            <div class="menu-options" :id="`video_${video.id}`">
+                <button id="change" @click="changeVideo(video.id)">Изменить</button>
+                <button id="delete" @click="deleteVideo(video.id)">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endverbatim %}
+<script src="{% static 'video/js/myVideo.js' %}"></script>
+{% endblock %}

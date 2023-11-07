@@ -1,0 +1,107 @@
+.content{
+    position: relative;
+    top:100px;
+    left:6%;
+    width: 88%;
+}
+.content>p{
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    left:-15px;
+}
+#video-card>a>img{
+    border-radius:40px;
+    object-fit: cover;
+    width: 260px;
+    height: 150px;
+}
+#video-card>a{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color:black;
+    width: 95%;
+}
+.video-info>p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: black;
+    margin-left: 10px;
+    hyphens: auto;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width:  60%;
+    margin-bottom: 10px;
+}
+.video-info{
+    width: 90%;
+}
+.avtor-video{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+.avtor-video>img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+#video-card{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.avtor-video>p{
+    margin-top: 10px;
+    margin-left: 5px;
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+    font-family: 'Arimo', sans-serif;
+    font-size: 15px;
+}
+#count-view{
+    margin-left: 10px;
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+    font-family: 'Arimo', sans-serif;
+    font-size: 15px;
+    overflow: hidden;
+}
+.options{
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+.menu-options{
+    position: relative;
+    top:30px;
+    left:30px;
+    border-radius: 20px;
+    background-color: #aaaaaa;
+    height: 80px;
+    align-items: center;
+    flex-direction: column;
+    width: 130px;
+    display: none;
+}
+.menu-options>button{
+    width: 90%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 2px solid white;
+    transition: 0.25s;
+}
+.menu-options>button:hover{
+    border: 2px solid black;
+}
+#change{
+    margin-top: 5px;
+}
